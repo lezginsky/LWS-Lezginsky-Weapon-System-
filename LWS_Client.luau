@@ -259,7 +259,7 @@ local function Fire()
 		ShellHandler.Eject(ShellPoint, sSound)
 	end
 
-	Bridge:FireServer(targetPos, CurrentWeapon.Name)
+	Bridge:FireServer(spreadDirection, CurrentWeapon.Name)
 end
 
 task.spawn(function()
