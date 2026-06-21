@@ -1,0 +1,22 @@
+- Workspace
+    - LWS_Projectiles (Folder)
+- ReplicatedStorage
+    - LWS_Shared (Folder)
+        - Events (Folder)
+            - LWS_Bridge (RemoteEvent)
+        - ShellPool (Folder)
+        - LWS_Settings (ModuleScript)
+        - ShellHandler (ModuleScript)
+        - Shell (Part)
+- ServerScriptService
+    - LWS_Server (Script)
+- StarterPack
+    - Glock
+        - Settings (ModuleScript)
+        - AimPart (Part)
+        - Handle (Part)
+        - RootPart (Part) 
+        - ShellPart (Part)
+- StarterPlayer
+    - StarterPlayerScripts
+        - LWS_Client (LocalScript)
