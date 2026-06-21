@@ -83,12 +83,22 @@ end
 
 local function PlayWeaponSound(id, parent)
 	if not id or id == "" then return end
-	local sound = Instance.new("Sound")
-	sound.SoundId = id
-	sound.Parent = parent
-	sound:Play()
-	game:GetService("Debris"):AddItem(sound, 2)
+
+	local success, sound = pcall(function()
+		local s = Instance.new("Sound")
+		s.SoundId = id
+		s.Parent = parent
+		return s
+	end)
+
+	if success and sound then
+		sound:Play()
+		game:GetService("Debris"):AddItem(sound, 2)
+	else
+		warn("Не удалось загрузить звук " .. tostring(id))
+	end
 end
+
 
 local function CleanViewmodel()
 	if CurrentWeapon and CurrentWeapon.Parent == HiddenStorage then
