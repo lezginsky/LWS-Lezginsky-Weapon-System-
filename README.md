@@ -1,2 +1,2 @@
 # LWS-Lezginsky-Weapon-System
-## You can view .rbxl file in LWS 1.0.0 Beta.rbxl
+Put AimPart, Handle, RootPart, ShellPart and Settings modulescript in your weapon tool, and weld all parts
