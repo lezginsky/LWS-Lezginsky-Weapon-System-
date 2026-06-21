@@ -25,17 +25,13 @@ Bridge.OnServerEvent:Connect(function(player: Player, clientDirection: any, weap
 	local character = player.Character
 	if not character or not character.PrimaryPart then return end
 
-	local tool = character:FindFirstChild(weaponName) or player.Backpack:FindFirstChild(weaponName)
+	local tool = character:FindFirstChild(weaponName) or player.Backpack:FindFirstChild(weaponName) or ReplicatedStorage:FindFirstChild("LWS_HiddenStorage"):FindFirstChild(weaponName)
 	if not tool then return end
 
 	local settingsModule = tool:FindFirstChild("Settings")
 	if not settingsModule then return end
 
 	local settings = require(settingsModule)
-	local muzzle = tool:FindFirstChild("AimPart") :: Part
-	if not muzzle then return end
-
-	if (character.PrimaryPart.Position - muzzle.Position).Magnitude > 25 then return end
 
 	local maxBounces = settings.MaxBounce or 3
 	local angleLimit = settings.RicochetAngleLimit or 45
@@ -46,7 +42,9 @@ Bridge.OnServerEvent:Connect(function(player: Player, clientDirection: any, weap
 	table.insert(currentFilter, character)
 
 	local bounces = 0
-	local origin = muzzle.Position
+	-- БЕЗОПАСНО И НАДЕЖНО: Пуля летит от головы персонажа, а не из спрятанного в реплике AimPart
+	local head = character:FindFirstChild("Head") :: BasePart
+	local origin = if head then head.Position else character.PrimaryPart.Position
 
 	local dir: Vector3 = clientDirection :: Vector3
 	local direction = dir.Unit * 1000 
